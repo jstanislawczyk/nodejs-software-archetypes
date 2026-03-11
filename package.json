@@ -1,0 +1,34 @@
+{
+  "name": "nodejs-software-archetypes",
+  "version": "1.0.0",
+  "description": "Collection of software archetypes implemented in Node.js",
+  "keywords": [
+    "software-archetypes",
+    "software-architecture"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jstanislawczyk/nodejs-software-archetypes.git"
+  },
+  "license": "ISC",
+  "author": "jstanislawczyk",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "test": "node --test --loader ts-node/esm src/**/*.test.ts",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "eslint": "^10.0.0",
+    "prettier": "^3.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
