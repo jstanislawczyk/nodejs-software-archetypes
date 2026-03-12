@@ -1,7 +1,7 @@
-import { ImeiSerialNumber } from './imei-serial-number.js';
+import { ImeiSerialNumber } from './imei.serial-number.js';
 import type { SerialNumber } from './serial-number.js';
-import { TextualSerialNumber } from './textual-number.js';
-import { VinSerialNumber } from './vin-serial-number.js';
+import { TextualSerialNumber } from './textual.serial-number.js';
+import { VinSerialNumber } from './vin.serial-number.js';
 
 export class SerialNumbers {
   static of(value: string): SerialNumber {
