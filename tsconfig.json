@@ -5,9 +5,7 @@
     "module": "nodenext",
     "moduleResolution": "NodeNext",
     "target": "ES2020",
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
@@ -22,13 +20,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@/common/*": [
-        "src/common/*"
-      ]
+      "@/common/*": ["src/common/*"]
     }
   }
 }

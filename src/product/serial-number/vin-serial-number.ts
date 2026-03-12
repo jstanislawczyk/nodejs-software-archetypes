@@ -1,5 +1,5 @@
-import type { SerialNumber } from './serial-number.ts';
-import { Preconditions } from '@/common/preconditions.ts';
+import type { SerialNumber } from './serial-number.js';
+import { Preconditions } from '@/common/preconditions.js';
 
 export class VinSerialNumber implements SerialNumber {
   private readonly rawValue: string;

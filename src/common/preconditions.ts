@@ -1,5 +1,5 @@
-import { IllegalArgumentException } from './errors/illegal-argument.exception.ts';
-import { IllegalStateException } from './errors/illegal-state.exception.ts';
+import { IllegalArgumentException } from './errors/illegal-argument.exception.js';
+import { IllegalStateException } from './errors/illegal-state.exception.js';
 
 export class Preconditions {
   public static checkArgument(expression: boolean, errorMessage: string): void {
