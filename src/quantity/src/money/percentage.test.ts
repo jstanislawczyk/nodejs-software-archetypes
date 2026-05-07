@@ -13,8 +13,8 @@ describe('Percentage', () => {
       // Assert
       assert.ok(percentage);
       assert.strictEqual(
-        new Decimal('50.00000').comparedTo(percentage.value),
-        0,
+        new Decimal('50.00000').equals(percentage.value),
+        true,
       );
     });
 
@@ -25,8 +25,8 @@ describe('Percentage', () => {
       // Assert
       assert.ok(percentage);
       assert.strictEqual(
-        new Decimal('25.50000').comparedTo(percentage.value),
-        0,
+        new Decimal('25.50000').equals(percentage.value),
+        true,
       );
     });
 
@@ -45,7 +45,7 @@ describe('Percentage', () => {
       const percentage = Percentage.zero();
 
       // Assert
-      assert.strictEqual(new Decimal('0').comparedTo(percentage.value), 0);
+      assert.strictEqual(new Decimal('0').equals(percentage.value), true);
     });
 
     it('should create one hundred percentage', () => {
@@ -54,8 +54,8 @@ describe('Percentage', () => {
 
       // Assert
       assert.strictEqual(
-        new Decimal('100.00000').comparedTo(percentage.value),
-        0,
+        new Decimal('100.00000').equals(percentage.value),
+        true,
       );
     });
   });
@@ -131,7 +131,7 @@ describe('Percentage', () => {
       const result = p1.multiply(p2);
 
       // Assert
-      assert.strictEqual(new Decimal('16.66500').comparedTo(result.value), 0);
+      assert.strictEqual(new Decimal('16.66500').equals(result.value), true);
     });
   });
 
