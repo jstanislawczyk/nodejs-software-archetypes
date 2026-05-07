@@ -1,0 +1,11 @@
+{
+  "name": "@archetypes/common",
+  "type": "module",
+  "main": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./errors": "./errors/index.ts",
+    "./errors/*": "./errors/*.ts",
+    "./types": "./types/index.ts"
+  }
+}

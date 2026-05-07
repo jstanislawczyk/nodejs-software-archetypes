@@ -4,7 +4,7 @@
     "outDir": "./dist",
     "module": "nodenext",
     "moduleResolution": "NodeNext",
-    "target": "ES2020",
+    "target": "es2025",
     "types": ["node"],
 
     "sourceMap": true,
@@ -21,6 +21,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "emitDeclarationOnly": true,
     "allowImportingTsExtensions": true,
     "esModuleInterop": true
   }

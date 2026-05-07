@@ -1,0 +1,8 @@
+{
+  "name": "@archetypes/quantity",
+  "type": "module",
+  "main": "index.ts",
+  "dependencies": {
+    "decimal.js": "^10.6.0"
+  }
+}
