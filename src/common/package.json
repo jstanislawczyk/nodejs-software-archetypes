@@ -1,0 +1,17 @@
+{
+  "name": "@archetypes/common",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./errors": "./src/errors/index.js",
+    "./errors/*": "./src/errors/*.js",
+    "./types": "./src/types/index.js"
+  },
+  "scripts": {
+    "test:unit": "node --import tsx --test 'src/**/*.test.ts'"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}
