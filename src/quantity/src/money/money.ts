@@ -5,10 +5,10 @@ import { Percentage } from './percentage.js';
 type AcceptedAmount = Decimal | number | string;
 
 export class Money implements Comparable<Money> {
-  private readonly amount: Decimal;
-  private readonly currencyCode: string;
-
-  private constructor(amount: Decimal, currencyCode: string) {
+  private constructor(
+    readonly amount: Decimal,
+    readonly currencyCode: string,
+  ) {
     Preconditions.checkNotBlank(currencyCode, 'currencyCode must be defined');
 
     this.amount = new Decimal(amount);
@@ -71,6 +71,16 @@ export class Money implements Comparable<Money> {
   // Utilities
   static min(one: Money, two: Money): Money {
     return one.compareTo(two) <= 0 ? one : two;
+  }
+
+  static minFromSet(set: Set<Money>): Money | undefined {
+    if (set.size === 0) {
+      return undefined;
+    }
+
+    return Array.from(set).reduce((min, current) =>
+      current.compareTo(min) < 0 ? current : min,
+    );
   }
 
   static max(one: Money, two: Money): Money {
@@ -173,10 +183,6 @@ export class Money implements Comparable<Money> {
       .toDecimalPlaces(10, Decimal.ROUND_HALF_UP)
       .toSignificantDigits()
       .toDecimalPlaces(Math.max(this.amount.decimalPlaces() ?? 0, 0));
-  }
-
-  getCurrencyCode(): string {
-    return this.currencyCode;
   }
 
   toString(): string {

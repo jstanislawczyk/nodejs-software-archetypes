@@ -4,24 +4,24 @@ import {
 } from './errors/index.js';
 
 export class Preconditions {
-  public static checkArgument(expression: boolean, errorMessage: string): void {
+  static checkArgument(expression: boolean, errorMessage: string): void {
     if (!expression) {
       throw new IllegalArgumentException(errorMessage);
     }
   }
 
-  public static checkState(expression: boolean, errorMessage: string): void {
+  static checkState(expression: boolean, errorMessage: string): void {
     if (!expression) {
       throw new IllegalStateException(errorMessage);
     }
   }
 
-  public static checkNotBlank(value: string, errorMessage: string): void {
+  static checkNotBlank(value: string, errorMessage: string): void {
     this.checkNotEmpty(value, errorMessage);
     this.checkArgument(value.trim().length > 0, errorMessage);
   }
 
-  public static checkNotEmpty(value: unknown, errorMessage: string): void {
+  static checkNotEmpty(value: unknown, errorMessage: string): void {
     this.checkArgument(value !== null && value !== undefined, errorMessage);
   }
 }

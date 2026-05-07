@@ -27,23 +27,23 @@ export class Percentage {
     return Percentage.of(0);
   }
 
-  public add(other: Percentage): Percentage {
+  add(other: Percentage): Percentage {
     return Percentage.of(this.value.add(other.value));
   }
 
-  public subtract(other: Percentage): Percentage {
+  subtract(other: Percentage): Percentage {
     return Percentage.of(this.value.sub(other.value));
   }
 
-  public multiply(other: Percentage): Percentage {
+  multiply(other: Percentage): Percentage {
     return Percentage.of(this.value.mul(other.value).div(100));
   }
 
-  public equals(other: Percentage): boolean {
+  equals(other: Percentage): boolean {
     return this.value.eq(other.value);
   }
 
-  public toString(): string {
+  toString(): string {
     return `${this.value.toDecimalPlaces(2, Decimal.ROUND_HALF_UP).toString()}%`;
   }
 }
