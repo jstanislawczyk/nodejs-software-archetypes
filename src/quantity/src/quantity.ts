@@ -1,12 +1,13 @@
 import { Preconditions } from '@archetypes/common';
-import type { Unit } from './unit.ts';
+import type { Unit } from './unit.js';
 import { Decimal } from 'decimal.js';
 
 export class Quantity {
   public constructor(
-    private readonly amount: Decimal,
-    private readonly unit: Unit,
+    public readonly amount: Decimal,
+    public readonly unit: Unit,
   ) {
+    Preconditions.checkNotEmpty(unit, 'Unit must not be null');
     Preconditions.checkNotEmpty(amount, 'Value must not be empty');
     Preconditions.checkArgument(
       amount.greaterThanOrEqualTo(0),
@@ -15,6 +16,7 @@ export class Quantity {
   }
 
   public static of(amount: number | Decimal, unit: Unit): Quantity {
+    Preconditions.checkNotEmpty(amount, 'Value must not be empty');
     const decimalAmount = new Decimal(amount);
     return new Quantity(decimalAmount, unit);
   }
@@ -46,6 +48,10 @@ export class Quantity {
     );
 
     return this.amount.comparedTo(other.amount);
+  }
+
+  public equals(other: Quantity): boolean {
+    return this.amount.equals(other.amount) && this.unit.equals(other.unit);
   }
 
   public toString(): string {

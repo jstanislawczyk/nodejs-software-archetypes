@@ -2,8 +2,8 @@ import { Preconditions } from '@archetypes/common';
 
 export class Unit {
   constructor(
-    private readonly symbol: string,
-    private readonly name: string,
+    public readonly symbol: string,
+    public readonly name: string,
   ) {
     Preconditions.checkNotBlank(symbol, 'Symbol must not be empty');
     Preconditions.checkNotBlank(name, 'Name must not be empty');

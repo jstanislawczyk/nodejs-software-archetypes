@@ -1,8 +1,14 @@
 {
   "name": "@archetypes/quantity",
   "type": "module",
-  "main": "index.ts",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "node --import tsx --test src/**/*.test.ts"
+  },
   "dependencies": {
     "decimal.js": "^10.6.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
   }
 }
