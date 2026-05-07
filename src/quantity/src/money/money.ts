@@ -1,6 +1,6 @@
 import { Preconditions, type Comparable } from '@archetypes/common';
 import { Decimal } from 'decimal.js';
-import { Percentage } from './percentage.ts';
+import { Percentage } from './percentage.js';
 
 type AcceptedAmount = Decimal | number | string;
 

@@ -21,8 +21,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true,
     "esModuleInterop": true
   }
 }

@@ -1,7 +1,7 @@
 import {
   IllegalArgumentException,
   IllegalStateException,
-} from './errors/index.ts';
+} from './errors/index.js';
 
 export class Preconditions {
   public static checkArgument(expression: boolean, errorMessage: string): void {

@@ -1,2 +1,2 @@
-export * from './illegal-argument.exception.ts';
-export * from './illegal-state.exception.ts';
+export * from './illegal-argument.exception.js';
+export * from './illegal-state.exception.js';
