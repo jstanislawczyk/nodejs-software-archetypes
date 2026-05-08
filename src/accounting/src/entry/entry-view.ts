@@ -1,4 +1,3 @@
-import type { Dayjs } from 'dayjs';
 import type { AccountId } from '../account/account-id.js';
 import type { TransactionId } from '../transaction/transaction-id.js';
 import type { Money } from '@archetypes/quantity';
@@ -11,8 +10,8 @@ export class EntryView {
   readonly amount: Money;
   readonly transactionId: TransactionId;
   readonly accountId: AccountId;
-  readonly occurredAt: Dayjs;
-  readonly appliesAt: Dayjs;
+  readonly occurredAt: Date;
+  readonly appliesAt: Date;
 
   private constructor(
     entryId: EntryId,
@@ -20,8 +19,8 @@ export class EntryView {
     amount: Money,
     transactionId: TransactionId,
     accountId: AccountId,
-    occurredAt: Dayjs,
-    appliesAt: Dayjs,
+    occurredAt: Date,
+    appliesAt: Date,
   ) {
     this.entryId = entryId;
     this.type = type;

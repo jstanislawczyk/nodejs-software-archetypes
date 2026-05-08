@@ -4,10 +4,13 @@ import { Validity } from './validity.js';
 import dayjs from 'dayjs';
 
 describe('Validity', () => {
-  const past = dayjs('2026-01-10T12:00:00');
-  const now = dayjs('2026-01-15T12:00:00');
-  const future = dayjs('2026-01-20T12:00:00');
-  const forever = dayjs('9999-12-31T23:59:59.999Z').subtract(1, 'second');
+  const past = dayjs('2026-01-10T12:00:00').toDate();
+  const now = dayjs('2026-01-15T12:00:00').toDate();
+  const future = dayjs('2026-01-20T12:00:00').toDate();
+  const forever = dayjs('9999-12-31T23:59:59.999Z')
+    .subtract(1, 'second')
+    .toDate();
+  const epoch = dayjs(0).toDate();
 
   describe('creation', () => {
     it('should create validity until specific date', () => {
@@ -15,8 +18,8 @@ describe('Validity', () => {
       const validity = Validity.until(now);
 
       // Assert
-      assert.equal(validity.validFrom.valueOf(), dayjs(0).valueOf());
-      assert.equal(validity.validTo.valueOf(), now.valueOf());
+      assert.equal(validity.getValidFrom().valueOf(), epoch.valueOf());
+      assert.equal(validity.getValidTo().valueOf(), now.valueOf());
     });
 
     it('should create validity from specific date', () => {
@@ -24,10 +27,10 @@ describe('Validity', () => {
       const validity = Validity.from(now);
 
       // Assert
-      assert.equal(validity.validFrom.valueOf(), now.valueOf());
+      assert.equal(validity.getValidFrom().valueOf(), now.valueOf());
       assert.equal(
-        validity.validTo.valueOf(),
-        Validity.ALWAYS.validTo.valueOf(),
+        validity.getValidTo().valueOf(),
+        Validity.ALWAYS.getValidTo().valueOf(),
       );
     });
 
@@ -36,8 +39,8 @@ describe('Validity', () => {
       const validity = Validity.between(past, future);
 
       // Assert
-      assert.equal(validity.validFrom.valueOf(), past.valueOf());
-      assert.equal(validity.validTo.valueOf(), future.valueOf());
+      assert.equal(validity.getValidFrom().valueOf(), past.valueOf());
+      assert.equal(validity.getValidTo().valueOf(), future.valueOf());
     });
 
     it('should create always valid validity', () => {
@@ -45,10 +48,10 @@ describe('Validity', () => {
       const validity = Validity.always();
 
       // Assert
-      assert.equal(validity.validFrom.valueOf(), dayjs(0).valueOf());
+      assert.equal(validity.getValidFrom().valueOf(), epoch.valueOf());
       assert.equal(
-        validity.validTo.valueOf(),
-        Validity.ALWAYS.validTo.valueOf(),
+        validity.getValidTo().valueOf(),
+        Validity.ALWAYS.getValidTo().valueOf(),
       );
     });
   });
@@ -84,7 +87,7 @@ describe('Validity', () => {
     const validity = Validity.always();
 
     // Assert
-    assert.equal(validity.isValidAt(dayjs(0)), true);
+    assert.equal(validity.isValidAt(epoch), true);
     assert.equal(validity.isValidAt(past), true);
     assert.equal(validity.isValidAt(now), true);
     assert.equal(validity.isValidAt(future), true);
@@ -142,11 +145,11 @@ describe('Validity', () => {
 
   it('should handle epoch to max range', () => {
     // Act
-    const validity = Validity.between(dayjs(0), Validity.ALWAYS.validTo);
+    const validity = Validity.between(epoch, Validity.ALWAYS.getValidTo());
 
     // Assert
-    assert.equal(validity.isValidAt(dayjs(0)), true);
+    assert.equal(validity.isValidAt(epoch), true);
     assert.equal(validity.isValidAt(now), true);
-    assert.equal(validity.isValidAt(Validity.ALWAYS.validTo), false);
+    assert.equal(validity.isValidAt(Validity.ALWAYS.getValidTo()), false);
   });
 });

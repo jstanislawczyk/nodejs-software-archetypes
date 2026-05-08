@@ -1,4 +1,3 @@
-import type { Dayjs } from 'dayjs';
 import type { TransactionId } from '../transaction/transaction-id.js';
 import { EntryId } from './entry-id.js';
 import type { AccountId } from '../account/account-id.js';
@@ -9,8 +8,8 @@ import { MetaData } from '../common/metadata.js';
 export interface Entry {
   id: EntryId;
   transactionId: TransactionId;
-  occurredAt: Dayjs;
-  appliesAt: Dayjs;
+  occurredAt: Date;
+  appliesAt: Date;
   accountId: AccountId;
   amount: Money;
   metadata: MetaData;
@@ -24,8 +23,8 @@ export class AccountDebited implements Entry {
     readonly transactionId: TransactionId,
     readonly accountId: AccountId,
     readonly amount: Money,
-    readonly appliesAt: Dayjs,
-    readonly occurredAt: Dayjs,
+    readonly appliesAt: Date,
+    readonly occurredAt: Date,
     readonly metadata: MetaData,
     readonly validity: Validity,
     readonly appliedTo: EntryId | null,
@@ -35,8 +34,8 @@ export class AccountDebited implements Entry {
     accountId: AccountId,
     transactionId: TransactionId,
     amount: Money,
-    appliesAt: Dayjs,
-    occurredAt: Dayjs,
+    appliesAt: Date,
+    occurredAt: Date,
     metadata?: MetaData,
     validity?: Validity,
     appliedToEntryId?: EntryId,
@@ -63,8 +62,8 @@ export class AccountCredited implements Entry {
     readonly transactionId: TransactionId,
     readonly accountId: AccountId,
     readonly amount: Money,
-    readonly appliesAt: Dayjs,
-    readonly occurredAt: Dayjs,
+    readonly appliesAt: Date,
+    readonly occurredAt: Date,
     readonly metadata: MetaData,
     readonly validity: Validity,
     readonly appliedTo: EntryId | null,
@@ -74,8 +73,8 @@ export class AccountCredited implements Entry {
     accountId: AccountId,
     transactionId: TransactionId,
     amount: Money,
-    appliesAt: Dayjs,
-    occurredAt: Dayjs,
+    appliesAt: Date,
+    occurredAt: Date,
     metadata?: MetaData,
     validity?: Validity,
     appliedToEntryId?: EntryId,

@@ -5,32 +5,38 @@ export class Validity {
   private static readonly MIN_DATE = dayjs(0);
   private static readonly MAX_DATE = dayjs('9999-12-31T23:59:59.999Z');
 
-  static readonly ALWAYS = new Validity(Validity.MIN_DATE, Validity.MAX_DATE);
+  static readonly ALWAYS = new Validity(
+    Validity.MIN_DATE.toDate(),
+    Validity.MAX_DATE.toDate(),
+  );
 
-  readonly validFrom: Dayjs;
-  readonly validTo: Dayjs;
+  private readonly validFrom: Dayjs;
+  private readonly validTo: Dayjs;
 
-  constructor(validFrom: Dayjs, validTo: Dayjs) {
+  constructor(validFrom: Date, validTo: Date) {
+    const parsedValidFrom = dayjs(validFrom);
+    const parsedValidTo = dayjs(validTo);
+
     Preconditions.checkArgument(validFrom != null, 'validFrom must be defined');
     Preconditions.checkArgument(validTo != null, 'validTo must be defined');
     Preconditions.checkArgument(
-      !validFrom.isAfter(validTo),
+      !parsedValidFrom.isAfter(parsedValidTo),
       'validFrom must be before or equal to validTo',
     );
 
-    this.validFrom = validFrom;
-    this.validTo = validTo;
+    this.validFrom = parsedValidFrom;
+    this.validTo = parsedValidTo;
   }
 
-  static until(validTo: Dayjs): Validity {
-    return new Validity(Validity.MIN_DATE, validTo);
+  static until(validTo: Date): Validity {
+    return new Validity(Validity.MIN_DATE.toDate(), validTo);
   }
 
-  static from(validFrom: Dayjs): Validity {
-    return new Validity(validFrom, Validity.MAX_DATE);
+  static from(validFrom: Date): Validity {
+    return new Validity(validFrom, Validity.MAX_DATE.toDate());
   }
 
-  static between(validFrom: Dayjs | null, validTo: Dayjs | null): Validity {
+  static between(validFrom: Date | null, validTo: Date | null): Validity {
     if (!validFrom && !validTo) {
       return Validity.ALWAYS;
     }
@@ -50,12 +56,25 @@ export class Validity {
     return Validity.ALWAYS;
   }
 
-  isValidAt(instant: Dayjs): boolean {
-    return !instant.isBefore(this.validFrom) && instant.isBefore(this.validTo);
+  getValidFrom(): Date {
+    return this.validFrom.toDate();
   }
 
-  hasExpired(instant: Dayjs): boolean {
-    return !instant.isBefore(this.validTo);
+  getValidTo(): Date {
+    return this.validTo.toDate();
+  }
+
+  isValidAt(instant: Date): boolean {
+    const parsedInstant = dayjs(instant);
+    return (
+      !parsedInstant.isBefore(this.validFrom) &&
+      parsedInstant.isBefore(this.validTo)
+    );
+  }
+
+  hasExpired(instant: Date): boolean {
+    const parsedInstant = dayjs(instant);
+    return !parsedInstant.isBefore(this.validTo);
   }
 
   equals(other: Validity): boolean {
