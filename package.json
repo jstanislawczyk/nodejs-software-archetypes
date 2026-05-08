@@ -15,7 +15,8 @@
   "type": "module",
   "main": "index.js",
   "workspaces": [
-    "src/common"
+    "src/common",
+    "src/quantity"
   ],
   "scripts": {
     "build": "tsc",

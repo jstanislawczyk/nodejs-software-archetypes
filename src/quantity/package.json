@@ -2,6 +2,9 @@
   "name": "@archetypes/quantity",
   "type": "module",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
   "scripts": {
     "test:unit": "node --import tsx --test 'src/**/*.test.ts'"
   },
