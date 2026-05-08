@@ -19,8 +19,7 @@ export class CreateAccount {
     accountId: AccountId,
     name?: string,
   ): CreateAccount {
-    const accountIdToApply = accountId ?? AccountId.generate();
-    return new CreateAccount(accountIdToApply, name ?? '', 'OFF_BALANCE');
+    return new CreateAccount(accountId, name ?? '', 'OFF_BALANCE');
   }
 
   static generate(type?: string, name?: string): CreateAccount {
