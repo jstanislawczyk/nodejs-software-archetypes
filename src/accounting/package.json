@@ -1,0 +1,15 @@
+{
+  "name": "@archetypes/accounting",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "node --import tsx --test 'src/**/*.test.ts'"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.20",
+    "decimal.js": "^10.6.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}
