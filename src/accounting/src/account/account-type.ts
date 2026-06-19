@@ -1,0 +1,58 @@
+/**
+ * Represents the accounting classification of an account.
+ * Account types group accounts based on their role in the financial system,
+ * such as assets, liabilities, revenues, expenses, or off-balance tracking.
+ */
+export enum AccountType {
+  /**
+   * Represents accounts that record owned economic resources with possible plan product name.
+   * Asset accounts include receivables, cash, and other resources controlled by the entity
+   * expected to bring economic benefit.
+   */
+  ASSET = 'ASSET',
+
+  /**
+   * Represents off-balance-sheet accounts used for tracking informational, contingent,
+   * or projected values that do not directly affect the financial statements.
+   * These accounts are often used for collateral, guarantees, or estimated figures.
+   */
+  OFF_BALANCE = 'OFF_BALANCE',
+
+  /**
+   * Represents accounts used to record outflows of economic resources,
+   * typically associated with the costs of operations or losses.
+   * Expense accounts reduce the entity's equity and are used in profit & loss reporting.
+   * Examples include operational costs, write-offs, penalties, or losses due to fraud.
+   */
+  EXPENSE = 'EXPENSE',
+
+  /**
+   * Represents accounts that record obligations or debts owed by the entity.
+   * Liability accounts include payables, loans, accrued expenses, and other financial
+   * obligations that the entity must settle in the future.
+   */
+  LIABILITY = 'LIABILITY',
+
+  /**
+   * Represents accounts used to record inflows of economic resources,
+   * typically associated with sales, services rendered, or other income-generating activities.
+   * Revenue accounts increase the entity's equity and are used in profit & loss reporting.
+   */
+  REVENUE = 'REVENUE',
+
+  //TODO: EQUITY, etc.
+}
+
+export const isDoubleEntryBookingEnabled = (
+  accountType: AccountType,
+): boolean => {
+  const doubleEntryBookingConfig: Record<AccountType, boolean> = {
+    [AccountType.ASSET]: true,
+    [AccountType.OFF_BALANCE]: false,
+    [AccountType.EXPENSE]: true,
+    [AccountType.LIABILITY]: true,
+    [AccountType.REVENUE]: true,
+  };
+
+  return doubleEntryBookingConfig[accountType];
+};
